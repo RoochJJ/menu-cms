@@ -56,36 +56,36 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-/* Paleta "azulejo": azul profundo com destaque em açafrão */
+/* Paleta verde, amarelo e azul */
 :root {
-  --background: #F5F7FA;
-  --foreground: #18212E;
+  --background: #F5F8F4;
+  --foreground: #16251C;
 
   --card: #FFFFFF;
-  --card-foreground: #18212E;
+  --card-foreground: #16251C;
 
   --popover: #FFFFFF;
-  --popover-foreground: #18212E;
+  --popover-foreground: #16251C;
 
-  --primary: #17325C;
+  --primary: #12408F;
   --primary-foreground: #FFFFFF;
 
-  --secondary: #E8EDF5;
-  --secondary-foreground: #17325C;
+  --secondary: #E3F1E8;
+  --secondary-foreground: #0E5A32;
 
-  --muted: #EEF1F5;
-  --muted-foreground: #5A6577;
+  --muted: #EDF2EC;
+  --muted-foreground: #56665B;
 
-  --accent: #FBF1DA;
-  --accent-foreground: #6E4A00;
+  --accent: #FFF6CC;
+  --accent-foreground: #6B5200;
 
-  --saffron: #F2B544;
+  --saffron: #FFD21F;
 
   --destructive: oklch(0.577 0.245 27.325);
 
-  --border: #DCE2EA;
-  --input: #D2D9E3;
-  --ring: #2F5D9E;
+  --border: #D9E3DA;
+  --input: #CFDACF;
+  --ring: #12408F;
 
   /* Cores dos status de pedido */
   --status-new: #6A4FD0;
@@ -93,22 +93,22 @@
   --status-ready: #1C7F47;
   --status-delivered: #5F6B7C;
 
-  --chart-1: #17325C;
-  --chart-2: #F2B544;
-  --chart-3: #2F5D9E;
+  --chart-1: #0E7A3E;
+  --chart-2: #FFD21F;
+  --chart-3: #12408F;
   --chart-4: #1C7F47;
   --chart-5: #6A4FD0;
 
-  --radius: 0.625rem;
+  --radius: 0.75rem;
 
-  --sidebar: #17325C;
-  --sidebar-foreground: #E6ECF5;
-  --sidebar-primary: #F2B544;
-  --sidebar-primary-foreground: #17325C;
-  --sidebar-accent: rgb(255 255 255 / 0.08);
+  --sidebar: #0E6B39;
+  --sidebar-foreground: #E4F3E9;
+  --sidebar-primary: #FFD21F;
+  --sidebar-primary-foreground: #12408F;
+  --sidebar-accent: rgb(255 255 255 / 0.13);
   --sidebar-accent-foreground: #FFFFFF;
-  --sidebar-border: rgb(255 255 255 / 0.12);
-  --sidebar-ring: #F2B544;
+  --sidebar-border: rgb(255 255 255 / 0.16);
+  --sidebar-ring: #FFD21F;
 }
 
 @layer base {

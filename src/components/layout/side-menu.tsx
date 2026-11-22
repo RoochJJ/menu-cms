@@ -10,7 +10,7 @@ export function SideMenu() {
       <div className="flex items-center gap-3 px-5 py-5 md:py-7">
         <img src={logo} alt="" className="size-9" />
         <div className="leading-tight">
-          <p className="text-base font-bold text-white">Menu CMS</p>
+          <p className="text-base font-bold text-white">Vertus Burger</p>
           <p className="text-xs text-sidebar-foreground/70">Gestão do cardápio</p>
         </div>
       </div>
@@ -21,6 +21,7 @@ export function SideMenu() {
             <li key={to} className="shrink-0">
               <NavLink
                 to={to}
+                end={to === "/"}
                 className={({ isActive }) =>
                   cn(
                     "relative flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",

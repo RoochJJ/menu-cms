@@ -11,8 +11,8 @@ export function NotFoundPage() {
       title="Página não encontrada"
       description="O endereço acessado não existe no CMS. Use o menu para escolher uma área."
       action={
-        <Link to="/categories" className={buttonVariants({ variant: "outline" })}>
-          Ir para Categorias
+        <Link to="/" className={buttonVariants({ variant: "outline" })}>
+          Ir para o início
         </Link>
       }
     />
