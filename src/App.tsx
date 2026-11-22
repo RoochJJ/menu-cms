@@ -4,6 +4,8 @@ import { NotFoundPage } from "./components/pages/not-found/not-found-page";
 import { CategoriesPage } from "./components/pages/categories/categories-page";
 import { ProductsPage } from "./components/pages/products/products-page";
 import { SpotsPage } from "./components/pages/spots/spots-page";
+import { GuestChecksPage } from "./components/pages/guest-checks/guest-checks-page";
+import { GuestCheckDetailPage } from "./components/pages/guest-checks/guest-check-detail-page";
 
 function App() {
   return (
@@ -13,6 +15,8 @@ function App() {
         <Route path="categories" element={<CategoriesPage />} />
         <Route path="products" element={<ProductsPage />} />
         <Route path="spots" element={<SpotsPage />} />
+        <Route path="guest-checks" element={<GuestChecksPage />} />
+        <Route path="guest-checks/:id" element={<GuestCheckDetailPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>
