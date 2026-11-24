@@ -1,75 +1,75 @@
-# React + TypeScript + Vite
+# Vertus Burger | Menu CMS
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Painel administrativo (CMS) do cardápio digital do restaurante Vertus Burger. Permite que a equipe gerencie categorias, produtos e mesas e acompanhe as comandas abertas e o status dos pedidos.
 
-Currently, two official plugins are available:
+O CMS consome a API NestJS desenvolvida no primeiro bimestre ([menu-backend](https://github.com/RoochJJ/menu-backend)). Nenhum dado fica fixo no código: tudo é lido e gravado pela API.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Funcionalidades
 
-## React Compiler
+- **Início:** apresentação do restaurante, atalhos com a quantidade de registros de cada área, comandas abertas e resumo do cardápio.
+- **Categorias:** listar (nome, ícone, ordem de exibição e situação), cadastrar, editar e excluir com confirmação.
+- **Produtos:** listar (imagem, nome, categoria, preço em reais e indicadores de vegetariano e novidade), filtrar por categoria, cadastrar, editar e excluir com confirmação.
+- **Mesas:** listar, cadastrar, editar e excluir com confirmação.
+- **Comandas:** listar as comandas abertas (mesa, data de abertura e total acumulado) e abrir o detalhe de cada uma.
+- **Pedidos:** ver os itens de cada pedido (produto, quantidade, preço unitário e subtotal) e o total, e alterar o status (Novo, Em preparo, Pronto, Entregue).
+- Estados de carregamento, erro e lista vazia em todas as telas, mensagens de sucesso e erro (toast) e validação dos formulários.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Requisitos
 
-## Expanding the ESLint configuration
+- Node.js 20.19 ou superior
+- Backend `menu-backend` rodando
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Como instalar e executar
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+npm install
+copy .env.example .env   # no Linux/Mac: cp .env.example .env
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+## Variáveis de ambiente
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+| Variável | Descrição |
+| --- | --- |
+| `VITE_API_URL` | URL base da API NestJS (menu-backend) |
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Stack
 
+Vite, React, TypeScript, Tailwind CSS, shadcn/ui, Axios e TanStack Query.
+
+- **Axios:** uma única instância em `src/lib/axios.ts`, com a `baseURL` lida do `.env`.
+- **TanStack Query:** leituras com `useQuery` e gravações com `useMutation`, invalidando as consultas afetadas (`invalidateQueries`) após o sucesso.
+
+## Dependências fora da stack obrigatória
+
+| Dependência | Justificativa |
+| --- | --- |
+| `react-router-dom` | Navegação entre as áreas do CMS e filtro de produtos na URL. É a mesma biblioteca usada no menu-frontend. |
+| `sonner` | Mensagens de sucesso e erro (toast). É o componente de toast oficial do shadcn/ui. |
+| `lucide-react` | Ícones da interface. É a biblioteca de ícones padrão do shadcn/ui. |
+| `@base-ui/react`, `class-variance-authority`, `cn`, `tw-animate-css`, `shadcn` | Instaladas pelo shadcn/ui; são a base dos componentes em `src/components/ui`. |
+| `@tailwindcss/vite` | Plugin oficial do Tailwind CSS para o Vite. |
+| `@fontsource-variable/manrope` | Fonte da interface servida localmente, sem depender de CDN (o menu-frontend usa o mesmo tipo de pacote, `@fontsource`). |
+| `@fontsource-variable/bricolage-grotesque` | Fonte do nome "Vertus Burger" na página inicial, servida localmente. |
+
+## Rotas da API utilizadas
+
+| Área | Rotas |
+| --- | --- |
+| Categorias | `GET /categories`, `POST /categories`, `PATCH /categories/:id`, `DELETE /categories/:id` |
+| Produtos | `GET /products?categoryId=`, `POST /products`, `PATCH /products/:id`, `DELETE /products/:id` |
+| Mesas | `GET /spots`, `POST /spots`, `PATCH /spots/:id`, `DELETE /spots/:id` |
+| Comandas | `GET /guest-checks?status=OPENED`, `GET /guest-checks/:id` |
+| Pedidos | `PATCH /orders/:id/status` |
+
+## Estrutura
+
+```
+src/
+  cases/<área>/        dtos, services (acesso à API), hooks (TanStack Query) e componentes de cada área
+  components/layout/   estrutura da página e menu lateral
+  components/pages/    páginas do CMS
+  components/shared/   componentes reutilizáveis (título, estados de tela, confirmação de exclusão)
+  components/ui/       componentes do shadcn/ui
+  lib/                 cliente da API (axios), mensagens de erro, formatação e junção de classes
 ```
