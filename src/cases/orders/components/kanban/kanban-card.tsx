@@ -20,7 +20,7 @@ export function KanbanCardContent({ order, overlay, dragging }: KanbanCardProps 
         overlay && "rotate-2 cursor-grabbing shadow-lg ring-2 ring-primary/30"
       )}
     >
-      <header className="flex items-baseline justify-between gap-3">
+      <header className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-0.5">
         <span className="font-semibold">{order.guestCheck?.spot.name ?? "Mesa"}</span>
         <time dateTime={order.createdAt} className="shrink-0 text-xs text-muted-foreground tabular-nums">
           {formatDateTime(order.createdAt)}
