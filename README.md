@@ -52,7 +52,6 @@ Vite, React, TypeScript, Tailwind CSS, shadcn/ui, Axios e TanStack Query.
 | `@tailwindcss/vite` | Plugin oficial do Tailwind CSS para o Vite. |
 | `@fontsource-variable/manrope` | Fonte da interface servida localmente, sem depender de CDN (o menu-frontend usa o mesmo tipo de pacote, `@fontsource`). |
 | `@dnd-kit/core` | Arrastar e soltar (drag and drop) dos cartões no Kanban. Biblioteca permitida no enunciado do bônus; funciona com mouse, toque e teclado. |
-| `@fontsource-variable/bricolage-grotesque` | Fonte do nome "Vertus Burger" na página inicial, servida localmente. |
 
 ## Rotas da API utilizadas
 
