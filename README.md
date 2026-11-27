@@ -12,6 +12,7 @@ O CMS consome a API NestJS desenvolvida no primeiro bimestre ([menu-backend](htt
 - **Mesas:** listar, cadastrar, editar e excluir com confirmação.
 - **Comandas:** listar as comandas abertas (mesa, data de abertura e total acumulado) e abrir o detalhe de cada uma.
 - **Pedidos:** ver os itens de cada pedido (produto, quantidade, preço unitário e subtotal) e o total, e alterar o status (Novo, Em preparo, Pronto, Entregue).
+- **Kanban (bônus):** uma coluna por status (Novo, Em preparo, Pronto, Entregue) com os pedidos das comandas abertas como cartões (mesa, itens e horário). Arrastar um cartão para outra coluna altera o status na API; ao recarregar, cada pedido continua na coluna do status gravado.
 - Estados de carregamento, erro e lista vazia em todas as telas, mensagens de sucesso e erro (toast) e validação dos formulários.
 
 ## Requisitos
@@ -50,6 +51,7 @@ Vite, React, TypeScript, Tailwind CSS, shadcn/ui, Axios e TanStack Query.
 | `@base-ui/react`, `class-variance-authority`, `cn`, `tw-animate-css`, `shadcn` | Instaladas pelo shadcn/ui; são a base dos componentes em `src/components/ui`. |
 | `@tailwindcss/vite` | Plugin oficial do Tailwind CSS para o Vite. |
 | `@fontsource-variable/manrope` | Fonte da interface servida localmente, sem depender de CDN (o menu-frontend usa o mesmo tipo de pacote, `@fontsource`). |
+| `@dnd-kit/core` | Arrastar e soltar (drag and drop) dos cartões no Kanban. Biblioteca permitida no enunciado do bônus; funciona com mouse, toque e teclado. |
 | `@fontsource-variable/bricolage-grotesque` | Fonte do nome "Vertus Burger" na página inicial, servida localmente. |
 
 ## Rotas da API utilizadas
@@ -60,7 +62,7 @@ Vite, React, TypeScript, Tailwind CSS, shadcn/ui, Axios e TanStack Query.
 | Produtos | `GET /products?categoryId=`, `POST /products`, `PATCH /products/:id`, `DELETE /products/:id` |
 | Mesas | `GET /spots`, `POST /spots`, `PATCH /spots/:id`, `DELETE /spots/:id` |
 | Comandas | `GET /guest-checks?status=OPENED`, `GET /guest-checks/:id` |
-| Pedidos | `PATCH /orders/:id/status` |
+| Pedidos | `GET /orders?guestCheckStatus=OPENED` (Kanban), `PATCH /orders/:id/status` |
 
 ## Estrutura
 
