@@ -1,4 +1,4 @@
-import { Armchair, House, ReceiptText, Tags, UtensilsCrossed, type LucideIcon } from "lucide-react";
+import { Armchair, House, ReceiptText, SquareKanban, Tags, UtensilsCrossed, type LucideIcon } from "lucide-react";
 
 export type MenuItem = {
   to: string;
@@ -13,4 +13,5 @@ export const MENU_ITEMS: MenuItem[] = [
   { to: "/products", label: "Produtos", icon: UtensilsCrossed },
   { to: "/spots", label: "Mesas", icon: Armchair },
   { to: "/guest-checks", label: "Comandas", icon: ReceiptText },
+  { to: "/kanban", label: "Kanban", icon: SquareKanban },
 ];
